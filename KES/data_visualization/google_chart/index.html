@@ -1,0 +1,35 @@
+<html>
+
+<head>
+	<title>Hey Google Chart</title>
+	<!--Load the AJAX API-->
+	<!--
+		예외를 제외하고는
+		그리려는 차트의 수와 상관없이 한번만
+		해드나 바디 태그 안에 작성할 수 있음
+		로더가 로드 된후에는 자유롭게 google.charts.load()를 호출 할 수 있다
+
+	-->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<link rel="stylesheet" type="text/css" href="basic/chart.css" />
+	<script type="text/javascript" src="basic/chart.js"></script>
+		<script type="text/javascript" src="chartWrapper/chartWrapper.js"></script>
+</head>
+
+<body>
+	<h1>
+		AyOh
+	</h1>
+	<div id="outside">
+		<p>바깥쪽 div</p>
+		<div id="inside">
+			<p>타원형 차트</p>
+			<!--Div that will hold the pie chart-->
+			<div id="chart_div">
+			</div>
+			<div id="chart_div2">
+			</div>
+		</div>
+	</div>
+</body>
+<html>

@@ -1,0 +1,42 @@
+html{
+	background: #E9D5B9;
+	color: #333;
+}
+p {
+	margin-left: 200;
+	color: white;
+/*	margin-right: 200;*/
+	float: center;
+}
+body{
+	float: left;
+}
+#outside {
+	background-color: aqua;
+	width: 900;
+	height: 	700;
+}
+#inside {
+	margin-left: auto;
+	margin-right: auto;
+	width: 400;
+	height: 300;
+	background-color: black;
+}
+#chart_div{
+	position: relative;
+	width: 400;
+	height: 300;
+}
+#chart_div2{
+	position: absolute;
+	width: 400;
+	height: 300;
+}
+#ltr{
+	background-color: aqua;
+}
+
+.row{
+	margin: 0;
+}

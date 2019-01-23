@@ -1,0 +1,26 @@
+[1] head 에 script tag
+
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		
+		그리려는 차트의 수에 관계없이 한 번만 로더를 로드함
+	
+[2] script load
+
+		<script type="text/javascript">
+		
+			google.charts.load('current', {
+				packages: ['corechart']
+			});
+			
+			parameter
+				(1) version
+					 최신 공식 릴리즈 = current
+					 다음 릴리즈 = upcoming
+					 
+				(2) packages
+						corechart =  (bar, column, line, area, stepped area, bubble, pie, donut, combo, candlestick, histogram, scatter)
+						
+
+			google.charts.setOnLoadCallback(drawChart);
+			
+		</script>
