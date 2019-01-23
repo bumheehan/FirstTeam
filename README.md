@@ -1,3 +1,3 @@
-# Study
+# FirstTeam
 
-ㅆㅗ오오오오이리리리리ㅣㄹ~~~
+!!Do not use soft Reset
