@@ -4,36 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: 0xffff00;
-        }
-        .rank{
-            position: absolute;
-            width:100%;
-            height: 350px;
-            /*display: none;*/
-            overflow:auto;
-        }
-        table{
-            width:300px;
-            color: aqua;
-            margin: 0 auto;
-
-
-        }
-        table,th,td{
-            font-size: 1rem;
-            text-align: center;
-
-        }
-        th,td{
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/card.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/pixi.js"></script>
     <script src="js/pixi-filter.js"></script>
@@ -41,8 +12,59 @@
 </head>
 
 <body>
+
+
+
+
+
 <div class="rank">
+<div class="rankoption">
+    <div class="opcolor1">
+        <div id="selc1" class="redop"></div>
+        <ul id="color1">
+            <li class="redop"></li>
+            <li class="yellowop"></li>
+            <li class="greenop"></li>
+            <li class="blueop"></li>
+            <li class="purpleop"></li>
+            <li class="cyanop"></li>
+            <li class="blackop"></li>
+            <li class="whiteop"></li>
+        </ul>
+    </div>
+    <div class="opcolor2">
+        <div id="selc2" class="yellowop"></div>
+        <ul id="color2">
+            <li class="redop"></li>
+            <li class="yellowop"></li>
+            <li class="greenop"></li>
+            <li class="blueop"></li>
+            <li class="purpleop"></li>
+            <li class="cyanop"></li>
+            <li class="blackop"></li>
+            <li class="whiteop"></li>
+        </ul>
+
+    </div>
+    <div class="opcount">
+        <div id="blo">3x3</div>
+        <ul id="blosel">
+            <li class="x3">3x3</li>
+            <li class="x4">4x4</li>
+            <li class="x5">5x5</li>
+            <li class="x6">6x6</li>
+        </ul>
+
+    </div>
+</div>
+
+
     <table id="tab">
+           <tr>
+                <th>Rank</th>
+                <th>NickName</th>
+                <th>Record</th>
+            </tr>
 
     </table>
 
@@ -50,6 +72,79 @@
 </div>
 
 
+
+
+<script>
+        let selectionlist1 = document.getElementById("color1");
+        let selectedbox1 = document.getElementById("selc1");
+        let opcolor1 = document.getElementsByClassName("opcolor1");
+        opcolor1[0].addEventListener("click",()=>{
+            selectionlist2.classList.remove("showlist");
+            selectionblock.classList.remove("showlist");
+            if(selectionlist1.classList[0]==null) {
+                selectionlist1.classList.add("showlist");
+            }else{
+                selectionlist1.classList.remove("showlist");
+            }
+
+        })
+        for (var i = 0; i < selectionlist1.children.length; i++) {
+             selectionlist1.children[i].addEventListener("click",(event)=>{
+                selectedbox1.classList.remove(selectedbox1.classList[0]);
+                selectedbox1.classList.add(event.target.classList[0]);
+
+
+
+                //console.log(event.target);
+            })
+        }
+
+        let selectionlist2 = document.getElementById("color2");
+        let selectedbox2 = document.getElementById("selc2");
+        let opcolor2 = document.getElementsByClassName("opcolor2");
+
+        opcolor2[0].addEventListener("click",()=>{
+                selectionlist1.classList.remove("showlist");
+                selectionblock.classList.remove("showlist");
+            if(selectionlist2.classList[0]==null) {
+                selectionlist2.classList.add("showlist");
+            }else{
+                selectionlist2.classList.remove("showlist");
+            }
+
+        })
+        for (var i = 0; i < selectionlist2.children.length; i++) {
+             selectionlist2.children[i].addEventListener("click",(event)=>{
+                selectedbox2.classList.remove(selectedbox2.classList[0]);
+                selectedbox2.classList.add(event.target.classList[0]);
+                //console.log(event.target);
+            })
+        }
+
+
+        let selectionblock = document.getElementById("blosel");
+        let selectedblockbox = document.getElementById("blo");
+        let opcount = document.getElementsByClassName("opcount");
+        opcount[0].addEventListener("click",()=>{
+            selectionlist1.classList.remove("showlist");
+            selectionlist2.classList.remove("showlist");
+            if(selectionblock.classList[0]==null) {
+                selectionblock.classList.add("showlist");
+            }else{
+                selectionblock.classList.remove("showlist");
+            }
+
+        })
+        for (var i = 0; i < selectionblock.children.length; i++) {
+             selectionblock.children[i].addEventListener("click",(event)=>{
+
+                selectedblockbox.innerText=event.target.innerText;
+                //console.log(event.target);
+            })
+        }
+
+        function
+    </script>
 </body>
 
 <script>
@@ -220,35 +315,47 @@
 
 
     function Start() {
-        let t = new PIXI.Graphics();
+         let t = new PIXI.Graphics();
         t.lineStyle(5, 0xffffFF, 1, 0);
         t.beginFill(0xffffff, 0);
-        t.drawRoundedRect(0, 0, width, 400);
+        t.drawRoundedRect(0, 0, width, 500);
         t.endFill();
+
 
 
 
         let start = new Text("START", style);
         let end = new Text("CLOSE", style);
         let setting = new Text("SETTING", style);
+        let ranking = new Text("RANKING", style);
+
         start.anchor.set(0.5, 0.5);
         end.anchor.set(0.5, 0.5);
+        ranking.anchor.set(0.5, 0.5);
         setting.anchor.set(0.5, 0.5);
 
         start.position.set(width / 2, height / 4 );
-        setting.position.set(width / 2, height / 4 + 100);
-        end.position.set(width / 2, height / 4 + 200);
+        ranking.position.set(width / 2, height / 4+100);
+        setting.position.set(width / 2, height / 4 + 200);
+        end.position.set(width / 2, height / 4 + 300);
 
         start.interactive = true;
         start.buttonMode = true;
         start.on('pointerdown', () => {
-            gamestate(GAMESETTING)
+            gamestate(START)
+        });
+
+
+        ranking.interactive = true;
+        ranking.buttonMode = true;
+        ranking.on('pointerdown', () => {
+            gamestate(RANKING)
         });
 
         end.interactive = true;
         end.buttonMode = true;
         end.on('pointerdown', () => {
-            //Android.clos();
+            Android.clos();
         });
 
         setting.interactive = true;
@@ -258,6 +365,7 @@
         });
 
         startCont.addChild(start);
+        startCont.addChild(ranking);
         startCont.addChild(end);
         startCont.addChild(setting);
 
@@ -762,8 +870,6 @@ const tst = new PIXI.TextStyle({
                             app.stage.addChild(rankCont);
                             document.getElementsByClassName("rank")[0].style.display="flex";
                             document.getElementsByClassName("rank")[0].style.height=app.stage.width*0.9+"px";
-
-
                         }
                     });
                 },
@@ -878,8 +984,9 @@ const tst = new PIXI.TextStyle({
         }
         app.stage.scale.set(cappw/appw,capph/apph);
 
-        document.getElementById("tab").style.zoom=app.stage.width/559.575;
-        document.getElementsByClassName("rank")[0].style.top=(window.innerHeight/2 -app.stage.height/2+100*capph/apph)+"px"
+
+        document.getElementsByClassName("rank")[0].style.zoom=app.stage.width/559.575;
+        document.getElementsByClassName("rank")[0].style.top=(app.renderer.height/4-app.stage.height*2/5)*559.575/app.stage.width+"px";
 
         app.stage.x = (app.screen.width - app.stage.width) / 2;
         app.stage.y = (app.screen.height - app.stage.height) / 2;
@@ -927,9 +1034,14 @@ const tst = new PIXI.TextStyle({
                 app.stage.addChild(startCont);
                 break;
             case RANKING:
-                sendRecord(mm, ss, ms);
+                //sendRecord(mm, ss, ms);
 
+                 //document.getElementById("tab").innerHTML=result;
+                            app.stage.removeChildren();
+                            app.stage.addChild(frame);
+                            app.stage.addChild(rankCont);
 
+                            document.getElementsByClassName("rank")[0].style.height=app.stage.width*0.9+"px";
                 break;
                 case GAMESETTING:
                 colorCont.children[8].tint = 0xffffff;

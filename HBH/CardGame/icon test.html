@@ -9,27 +9,73 @@
 
     <title>Document</title>
     <style>
-    
-        *{
+        body{
+            background: black;
+        }
+        * {
             margin: 0;
             padding: 0;
-        }
-        
-        .redicon{      
-            color: red;
             
         }
-        
+        .rank{
+            position: absolute;
+            width:100%;
+            height: 350px;
+
+            overflow:auto;
+        }
+        table{
+            width:300px;
+            color: white;
+            margin: 0 auto;
+
+        }
+        table,th,td{
+            font-size: 1rem;
+            text-align: center;
+
+        }
+        th,td{
+             border: 1px solid;
+        }
+        tr{
+           
+            height: 1rem;
+        }
+        .rankoption{
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+        }
+        .opcolor1{
+            position: relative;
+            width: 33%;
+            text-align: center;
+        }
+        .opcolor2{
+            position: relative;
+            width: 33%;
+            text-align: center;
+        }
+        .opcount{
+            position: relative;
+            width: 34%;
+            font-size:2rem;
+            text-align: center;
+            color: white;
+        }
         #selc1{
             display: inline-block;
-            width: 1rem;
-            height: 1rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.2rem;
         }
         #selc2{
             display: inline-block;
-    
-            width: 1rem;
-            height: 1rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.2rem;
         }
         .showlist{
             display: flex !important;   
@@ -38,45 +84,48 @@
             flex-direction: column;
             display: none;
             position: absolute;
-            top: 30px;
+            right: 0px;
+            z-index: 10;
         }
         
         #color1 li{
             display: inline-block;
-            border: 1px solid;
-            width: 20px;
-            height: 20px;
+            
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 5px;
+            border-radius: 0.5rem;
+            
         }
          #color2 {
             flex-direction: column;
             display: none;
             position: absolute;
-            top: 30px;
-            left: 30px;
+            right: 0px;
         }
         
         #color2 li{
             display: inline-block;
-            border: 1px solid;
-            width: 20px;
-            height: 20px;
+             width: 2rem;
+            height: 2rem;
+            margin-bottom: 5px;
+            border-radius: 0.5rem;
         }
        #blo{
-            display: inline-block;
+            display: inline;
 
         }
         #blosel {
             flex-direction: column;
             display: none;
             position: absolute;
-            top: 30px;
-            left: 30px;
+            right: 0px;
         }
         
         #blosel li{
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 2rem;
+            height: 2rem;
         }
         .redop{
             background: red;
@@ -102,13 +151,11 @@
         .whiteop{
             background: white;
         }
-        .rankoption{
-            display: flex;
-            align-items: flex-end;
-        }
+        
         span{
             font-size:"1rem";
         }
+        
     </style>
     <script src="js/jquery.prettydropdowns.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
@@ -116,9 +163,17 @@
 
 <body>
 
+
+
+
+  
+
+
+
+<div class="rank">
 <div class="rankoption">
     <div class="opcolor1">
-        <span>&nbsp;Color1&nbsp; </span><div id="selc1" class="redop"></div>
+        <div id="selc1" class="redop"></div>
         <ul id="color1">
             <li class="redop"></li>
             <li class="yellowop"></li>
@@ -131,7 +186,7 @@
         </ul>
     </div>
     <div class="opcolor2">
-        <span> &nbsp;Color2&nbsp; </span><div id="selc2" class="redop"></div>
+        <div id="selc2" class="yellowop"></div>
         <ul id="color2">
             <li class="redop"></li>
             <li class="yellowop"></li>
@@ -145,7 +200,7 @@
         
     </div>
     <div class="opcount">
-        <span> &nbsp;Block&nbsp; </span><div id="blo">3x3</div>
+        <div id="blo">3x3</div>
         <ul id="blosel">
             <li class="x3">3x3</li>
             <li class="x4">4x4</li>
@@ -155,6 +210,69 @@
         
     </div>
 </div>
+
+   
+    <table id="tab">
+           <tr>
+                <th>Rank</th>
+                <th>NickName</th>
+                <th>Record</th>
+            </tr>
+    <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>2</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>3</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>4</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>5</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>6</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>7</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>8</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>9</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>10</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    </table>
+
+
+</div>
+
 
 
 
