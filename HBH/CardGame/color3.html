@@ -60,12 +60,6 @@
 
 
     <table id="tab">
-           <tr>
-                <th>Rank</th>
-                <th>NickName</th>
-                <th>Record</th>
-            </tr>
-
     </table>
 
 
@@ -151,10 +145,10 @@
             let c1 = colorClassList.indexOf(selectedbox1.classList[0]);
             let c2 = colorClassList.indexOf(selectedbox2.classList[0]);
             let co = selectedblockbox.innerText.charAt(0);
-            console.log(c1+" : "+c2+" : "+co);
-            /*
+            console.log(c1==c2);
+
             if(c1!=null&&c2!=null){
-                if(c1==c2){
+                if(c1!=c2){
                       $.ajax({
                         url: "http://203.236.209.195:8080/rank",
                         type:"POST",
@@ -165,20 +159,15 @@
                         },
                         success: function(result) {
                             document.getElementById("tab").innerHTML=result;
-                            app.stage.removeChildren();
-                            app.stage.addChild(frame);
-                            app.stage.addChild(rankCont);
-                            document.getElementsByClassName("rank")[0].style.display="flex";
-                            document.getElementsByClassName("rank")[0].style.height=app.stage.width*0.9+"px";
                         }
                     });
                 }else{
-                    // same color
+                    document.getElementById("tab").innerHTML="Again Select Color";
                 }
             }else{
-                //error
+                document.getElementById("tab").innerHTML="COLOR ERROR";
             }
-            */
+
         }
     </script>
 </body>
