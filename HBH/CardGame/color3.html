@@ -15,7 +15,7 @@
             position: absolute;
             width:100%;
             height: 350px;
-            display: none;
+            /*display: none;*/
             overflow:auto;
         }
         table{
@@ -323,6 +323,7 @@
         rect2("4x4",[175,150]).on('pointerdown', fb);
         rect2("5x5",[325,150]).on('pointerdown', fb);
         rect2("6x6",[475,150]).on('pointerdown', fb);
+
 
         rect2("",[100,400]).on('pointerdown', fcc);
         rect2("",[400,400]).on('pointerdown', fcc);
@@ -734,36 +735,45 @@ const tst = new PIXI.TextStyle({
     ///기록
     ////////////////////////////////
     function sendRecord(mm, ss, ms) {
-        let name = prompt("닉네임");
+        let name = prompt("name");
 
-        //application/x-www-form-urlencoded
-        $.ajax({
-            url: "http://203.236.209.195:8080/send",
+        if(name!=null){
+             //application/x-www-form-urlencoded
+            $.ajax({
+                url: "http://203.236.209.195:8080/send",
 
-            data: {
-                name: name,
-                mm: mm,
-                ss: ss,
-                ms: ms
-            },
-            type: 'POST',
-            success: function(result) {
-                //alert("업로드 성공!!");
-                $.ajax({
-                    url: "http://203.236.209.195:8080/rank",
-                    type:"POST",
-                    success: function(result) {
-                        document.getElementById("tab").innerHTML=result;
-                        app.stage.removeChildren();
-                        app.stage.addChild(frame);
-                        app.stage.addChild(rankCont);
-                        document.getElementsByClassName("rank")[0].style.display="flex";
+                data: {
+                    name: name,
+                    mm: mm,
+                    ss: ss,
+                    ms: ms,
+                    count: count
+                },
+                type: 'POST',
+                success: function(result) {
+                    //alert("업로드 성공!!");
+                    $.ajax({
+                        url: "http://203.236.209.195:8080/rank",
+                        type:"POST",
+                        success: function(result) {
+                            document.getElementById("tab").innerHTML=result;
+                            app.stage.removeChildren();
+                            app.stage.addChild(frame);
+                            app.stage.addChild(rankCont);
+                            document.getElementsByClassName("rank")[0].style.display="flex";
+                            document.getElementsByClassName("rank")[0].style.height=app.stage.width*0.9+"px";
 
-                    }
-                });
+
+                        }
+                    });
+                },
+                error: function(jqXHR,textStatus,errorThrown){
+                    alert("Error Uploading");
             }
-        });
-        //file ~~color2에서 서버 http:205~~~로 ajax로보내면
+            });
+            //file ~~color2에서 서버 http:205~~~로 ajax로보내면
+        }
+
 
 
     }
@@ -922,12 +932,13 @@ const tst = new PIXI.TextStyle({
 
                 break;
                 case GAMESETTING:
-                 colorCont.children[8].tint = 0xffffff;
-                colorCont.children[5].tint = 0xffffff;
+                colorCont.children[8].tint = 0xffffff;
+                colorCont.children[5].tint = 0xff0000;
                 colorCont.children[6].tint = 0xffffff;
                 colorCont.children[7].tint = 0xffffff;
 
-                count =null;
+                count =3;
+                MAXNUM = count*count;
                 color1=null;
                 color2=null;
 
