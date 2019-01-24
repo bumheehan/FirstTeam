@@ -75,6 +75,7 @@
 
 
 <script>
+
         let selectionlist1 = document.getElementById("color1");
         let selectedbox1 = document.getElementById("selc1");
         let opcolor1 = document.getElementsByClassName("opcolor1");
@@ -92,7 +93,7 @@
              selectionlist1.children[i].addEventListener("click",(event)=>{
                 selectedbox1.classList.remove(selectedbox1.classList[0]);
                 selectedbox1.classList.add(event.target.classList[0]);
-
+                receiveRank();
 
 
                 //console.log(event.target);
@@ -118,6 +119,7 @@
                 selectedbox2.classList.remove(selectedbox2.classList[0]);
                 selectedbox2.classList.add(event.target.classList[0]);
                 //console.log(event.target);
+                receiveRank();
             })
         }
 
@@ -140,10 +142,44 @@
 
                 selectedblockbox.innerText=event.target.innerText;
                 //console.log(event.target);
+                receiveRank();
             })
         }
 
-        function
+        let colorClassList = ["redop","yellowop","greenop","blueop","purpleop","cyanop","blackop","whiteop"];
+        function receiveRank(){
+            let c1 = colorClassList.indexOf(selectedbox1.classList[0]);
+            let c2 = colorClassList.indexOf(selectedbox2.classList[0]);
+            let co = selectedblockbox.innerText.charAt(0);
+            console.log(c1+" : "+c2+" : "+co);
+            /*
+            if(c1!=null&&c2!=null){
+                if(c1==c2){
+                      $.ajax({
+                        url: "http://203.236.209.195:8080/rank",
+                        type:"POST",
+                        data:{
+                          c1:c1,
+                            c2:c2,
+                            count:co
+                        },
+                        success: function(result) {
+                            document.getElementById("tab").innerHTML=result;
+                            app.stage.removeChildren();
+                            app.stage.addChild(frame);
+                            app.stage.addChild(rankCont);
+                            document.getElementsByClassName("rank")[0].style.display="flex";
+                            document.getElementsByClassName("rank")[0].style.height=app.stage.width*0.9+"px";
+                        }
+                    });
+                }else{
+                    // same color
+                }
+            }else{
+                //error
+            }
+            */
+        }
     </script>
 </body>
 
@@ -860,18 +896,7 @@ const tst = new PIXI.TextStyle({
                 type: 'POST',
                 success: function(result) {
                     //alert("업로드 성공!!");
-                    $.ajax({
-                        url: "http://203.236.209.195:8080/rank",
-                        type:"POST",
-                        success: function(result) {
-                            document.getElementById("tab").innerHTML=result;
-                            app.stage.removeChildren();
-                            app.stage.addChild(frame);
-                            app.stage.addChild(rankCont);
-                            document.getElementsByClassName("rank")[0].style.display="flex";
-                            document.getElementsByClassName("rank")[0].style.height=app.stage.width*0.9+"px";
-                        }
-                    });
+
                 },
                 error: function(jqXHR,textStatus,errorThrown){
                     alert("Error Uploading");
@@ -1036,12 +1061,12 @@ const tst = new PIXI.TextStyle({
             case RANKING:
                 //sendRecord(mm, ss, ms);
 
-                 //document.getElementById("tab").innerHTML=result;
-                            app.stage.removeChildren();
-                            app.stage.addChild(frame);
-                            app.stage.addChild(rankCont);
-
-                            document.getElementsByClassName("rank")[0].style.height=app.stage.width*0.9+"px";
+                app.stage.removeChildren();
+                app.stage.addChild(frame);
+                app.stage.addChild(rankCont);
+                document.getElementsByClassName("rank")[0].style.height=app.stage.width+"px";
+                document.getElementsByClassName("rank")[0].style.display="block";
+                receiveRank();
                 break;
                 case GAMESETTING:
                 colorCont.children[8].tint = 0xffffff;
