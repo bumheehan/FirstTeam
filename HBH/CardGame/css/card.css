@@ -1,4 +1,7 @@
-
+        @font-face {
+          font-family:"MyFont";
+          src: url("../font/BigDots.ttf") format("truetype");
+        }
         * {
             margin: 0;
             padding: 0;
@@ -58,13 +61,13 @@
             display: inline-block;
             width: 2rem;
             height: 2rem;
-            border-radius: 0.2rem;
+            border-radius: 0.5rem;
         }
         #selc2{
             display: inline-block;
             width: 2rem;
             height: 2rem;
-            border-radius: 0.2rem;
+            border-radius: 0.5rem;
         }
         .showlist{
             display: flex !important;
@@ -110,12 +113,13 @@
             display: none;
             position: absolute;
             right: 0px;
+            border-radius: 0.5rem;
+            background: rgba(0,0,0,0.8);
         }
 
         #blosel li{
             display: inline-block;
 
-            background: black;
         }
         .redop{
             background: red;

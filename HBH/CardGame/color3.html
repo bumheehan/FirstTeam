@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="css/card.css">
+
+    <!-- 모바일웹앱 필수-->
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/pixi.js"></script>
     <script src="js/pixi-filter.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
 </head>
 
 <body>
@@ -145,17 +147,17 @@
             let c1 = colorClassList.indexOf(selectedbox1.classList[0]);
             let c2 = colorClassList.indexOf(selectedbox2.classList[0]);
             let co = selectedblockbox.innerText.charAt(0);
-            console.log(c1==c2);
 
             if(c1!=null&&c2!=null){
                 if(c1!=c2){
+                    document.getElementById("tab").innerHTML = "Loading";
                       $.ajax({
-                        url: "http://203.236.209.195:8080/rank",
+                        url: "http://54.218.223.190:8080/card/rank",
                         type:"POST",
                         data:{
-                          c1:c1,
+                            c1:c1,
                             c2:c2,
-                            count:co
+                            co:co
                         },
                         success: function(result) {
                             document.getElementById("tab").innerHTML=result;
@@ -191,6 +193,7 @@
     let otime; //맞출때 시간입력
     let hintc = 65793 //힌트컬러
     let inGame = false;
+    let sendchk = false; // 보낼때 안겹치게
 
     const START = 0;
     const CLOSE = 1;
@@ -219,6 +222,7 @@
     function loading (){
 
         backSound.loop = true;
+
         gamestate(INIT);
     }
 
@@ -303,7 +307,7 @@
         0.5,
         0.9
     ],
-    fontFamily: 'Coiny',
+    fontFamily: 'MyFont',
     fontSize: 40,
     fontVariant: "small-caps",
     letterSpacing: 8,
@@ -367,7 +371,7 @@
         start.interactive = true;
         start.buttonMode = true;
         start.on('pointerdown', () => {
-            gamestate(START)
+            gamestate(GAMESETTING)
         });
 
 
@@ -380,7 +384,7 @@
         end.interactive = true;
         end.buttonMode = true;
         end.on('pointerdown', () => {
-            Android.clos();
+            gamestate(CLOSE);
         });
 
         setting.interactive = true;
@@ -690,7 +694,7 @@ const tst = new PIXI.TextStyle({
         0.5,
         0.9
     ],
-    fontFamily: "Tahoma, Geneva, sans-serif",
+    fontFamily: 'MyFont',
     fontSize: 40
 });
     let timerT = new PIXI.Text("00 : 00 : 00", tst);
@@ -718,7 +722,7 @@ const tst = new PIXI.TextStyle({
 
         let record = new Text("RECORD",style);
         let restart = new Text("RESTART", style);
-        let rank = new Text("RANKING", style);
+        let rank = new Text("UPLOAD", style);
         let close = new Text("BACK", style);
 
         record.anchor.set(0.5, 0.5);
@@ -746,7 +750,7 @@ const tst = new PIXI.TextStyle({
         rank.interactive = true;
         rank.buttonMode = true;
         rank.on('pointerdown', () => {
-            gamestate(RANKING);
+            sendRecord();
         });
 
         endCont.addChild(record);
@@ -867,31 +871,38 @@ const tst = new PIXI.TextStyle({
     ////////////////////////////////
     ///기록
     ////////////////////////////////
-    function sendRecord(mm, ss, ms) {
-        let name = prompt("name");
+    function sendRecord() {
+        if(sendchk){
+             let name = prompt("name");
+            if(name!=null){
+                 //application/x-www-form-urlencoded
+                endCont.children[2].text="UPLOADING..."
+                $.ajax({
+                    url: "http://54.218.223.190:8080/card/send",
 
-        if(name!=null){
-             //application/x-www-form-urlencoded
-            $.ajax({
-                url: "http://203.236.209.195:8080/send",
-
-                data: {
-                    name: name,
-                    mm: mm,
-                    ss: ss,
-                    ms: ms,
-                    count: count
-                },
-                type: 'POST',
-                success: function(result) {
-                    //alert("업로드 성공!!");
-
-                },
-                error: function(jqXHR,textStatus,errorThrown){
-                    alert("Error Uploading");
+                    data: {
+                        name: name,
+                        mm: mm,
+                        ss: ss,
+                        ms: ms,
+                        c1:colorListC.indexOf(color1),
+                        c2:colorListC.indexOf(color2),
+                        co: count
+                    },
+                    type: 'POST',
+                    success: function(result) {
+                        //alert("업로드 성공!!");
+                        sendchk=false;
+                        endCont.children[2].text = "RANK : " + result;
+                    },
+                    error: function(jqXHR,textStatus,errorThrown){
+                        alert("Error Uploading");
+                        sendchk=true;
+                }
+                });
+                //file ~~color2에서 서버 http:205~~~로 ajax로보내면
             }
-            });
-            //file ~~color2에서 서버 http:205~~~로 ajax로보내면
+
         }
 
 
@@ -999,8 +1010,13 @@ const tst = new PIXI.TextStyle({
         app.stage.scale.set(cappw/appw,capph/apph);
 
 
-        document.getElementsByClassName("rank")[0].style.zoom=app.stage.width/559.575;
-        document.getElementsByClassName("rank")[0].style.top=(app.renderer.height/4-app.stage.height*2/5)*559.575/app.stage.width+"px";
+        //console.log("cappw :" + cappw +" ,appw :"+appw+", capph :"+capph+", apph :"+apph );
+        // cappw :1296 ,appw :600, capph :1728, apph800
+        document.getElementsByClassName("rank")[0].style.transform=["scale("+cappw/appw+","+capph/apph+")"];
+        document.getElementsByClassName("rank")[0].style.transformOrigin="top";
+        document.getElementsByClassName("rank")[0].style.top=(app.renderer.height/4-app.stage.height*2/5)+"px";
+        //document.getElementsByClassName("rank")[0].style.height=app.stage.height+"px";
+
 
         app.stage.x = (app.screen.width - app.stage.width) / 2;
         app.stage.y = (app.screen.height - app.stage.height) / 2;
@@ -1036,6 +1052,7 @@ const tst = new PIXI.TextStyle({
                 break;
             case END:
                 inGame=false;
+                sendchk=true;
                 app.stage.removeChildren();
                 app.stage.addChild(frame);
                 endCont.children[0].text = mm+" : "+ss+" : "+ms;
@@ -1046,14 +1063,14 @@ const tst = new PIXI.TextStyle({
                 app.stage.removeChildren();
                 app.stage.addChild(frame);
                 app.stage.addChild(startCont);
+
                 break;
             case RANKING:
-                //sendRecord(mm, ss, ms);
-
+                frame.tint = 0xeeeeee;
                 app.stage.removeChildren();
                 app.stage.addChild(frame);
                 app.stage.addChild(rankCont);
-                document.getElementsByClassName("rank")[0].style.height=app.stage.width+"px";
+
                 document.getElementsByClassName("rank")[0].style.display="block";
                 receiveRank();
                 break;
