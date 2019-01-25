@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    <style>
+        body{
+            background: black;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            
+        }
+        .rank{
+            position: absolute;
+            width:100%;
+            height: 350px;
+
+            overflow:auto;
+        }
+        table{
+            width:300px;
+            color: white;
+            margin: 0 auto;
+
+        }
+        table,th,td{
+            font-size: 1rem;
+            text-align: center;
+
+        }
+        th,td{
+             border: 1px solid;
+        }
+        tr{
+           
+            height: 1rem;
+        }
+        .rankoption{
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+        }
+        .opcolor1{
+            position: relative;
+            width: 33%;
+            text-align: center;
+        }
+        .opcolor2{
+            position: relative;
+            width: 33%;
+            text-align: center;
+        }
+        .opcount{
+            position: relative;
+            width: 34%;
+            font-size:2rem;
+            text-align: center;
+            color: white;
+        }
+        #selc1{
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.2rem;
+        }
+        #selc2{
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.2rem;
+        }
+        .showlist{
+            display: flex !important;   
+        }
+        #color1 {
+            flex-direction: column;
+            display: none;
+            position: absolute;
+            right: 0px;
+            z-index: 10;
+        }
+        
+        #color1 li{
+            display: inline-block;
+            
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 5px;
+            border-radius: 0.5rem;
+            
+        }
+         #color2 {
+            flex-direction: column;
+            display: none;
+            position: absolute;
+            right: 0px;
+        }
+        
+        #color2 li{
+            display: inline-block;
+             width: 2rem;
+            height: 2rem;
+            margin-bottom: 5px;
+            border-radius: 0.5rem;
+        }
+       #blo{
+            display: inline;
+
+        }
+        #blosel {
+            flex-direction: column;
+            display: none;
+            position: absolute;
+            right: 0px;
+        }
+        
+        #blosel li{
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+        }
+        .redop{
+            background: red;
+        }
+        .yellowop{
+            background: yellow;
+        }
+        .greenop{
+            background: green;
+        }
+        .blueop{
+            background: blue;
+        }
+        .purpleop{
+            background: purple;
+        }
+        .cyanop{
+            background: cyan;
+        }
+        .blackop{
+            background: black;
+        }
+        .whiteop{
+            background: white;
+        }
+        
+        span{
+            font-size:"1rem";
+        }
+        
+    </style>
+    <script src="js/jquery.prettydropdowns.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+
+
+
+  
+
+
+
+<div class="rank">
+<div class="rankoption">
+    <div class="opcolor1">
+        <div id="selc1" class="redop"></div>
+        <ul id="color1">
+            <li class="redop"></li>
+            <li class="yellowop"></li>
+            <li class="greenop"></li>
+            <li class="blueop"></li>
+            <li class="purpleop"></li>
+            <li class="cyanop"></li>
+            <li class="blackop"></li>
+            <li class="whiteop"></li>
+        </ul>
+    </div>
+    <div class="opcolor2">
+        <div id="selc2" class="yellowop"></div>
+        <ul id="color2">
+            <li class="redop"></li>
+            <li class="yellowop"></li>
+            <li class="greenop"></li>
+            <li class="blueop"></li>
+            <li class="purpleop"></li>
+            <li class="cyanop"></li>
+            <li class="blackop"></li>
+            <li class="whiteop"></li>
+        </ul>
+        
+    </div>
+    <div class="opcount">
+        <div id="blo">3x3</div>
+        <ul id="blosel">
+            <li class="x3">3x3</li>
+            <li class="x4">4x4</li>
+            <li class="x5">5x5</li>
+            <li class="x6">6x6</li>
+        </ul>
+        
+    </div>
+</div>
+
+   
+    <table id="tab">
+           <tr>
+                <th>Rank</th>
+                <th>NickName</th>
+                <th>Record</th>
+            </tr>
+    <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>2</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>3</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>4</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>5</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>6</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>7</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>8</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>9</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>10</td>
+    <td>2</td>
+    <td>3</td>
+    </tr>
+    </table>
+
+
+</div>
+
+
+
+
+    <script>
+        let selectionlist1 = document.getElementById("color1");
+        let selectedbox1 = document.getElementById("selc1");
+        let opcolor1 = document.getElementsByClassName("opcolor1");
+        opcolor1[0].addEventListener("click",()=>{ 
+            selectionlist2.classList.remove("showlist");
+            selectionblock.classList.remove("showlist");
+            if(selectionlist1.classList[0]==null) {
+                selectionlist1.classList.add("showlist");
+            }else{
+                selectionlist1.classList.remove("showlist");
+            }
+            
+        })
+        for (var i = 0; i < selectionlist1.children.length; i++) {
+             selectionlist1.children[i].addEventListener("click",(event)=>{  
+                selectedbox1.classList.remove(selectedbox1.classList[0]);
+                selectedbox1.classList.add(event.target.classList[0]);
+           
+        
+                
+                //console.log(event.target);
+            })
+        }
+        
+        let selectionlist2 = document.getElementById("color2");
+        let selectedbox2 = document.getElementById("selc2");
+        let opcolor2 = document.getElementsByClassName("opcolor2");
+        
+        opcolor2[0].addEventListener("click",()=>{ 
+                selectionlist1.classList.remove("showlist");
+                selectionblock.classList.remove("showlist");
+            if(selectionlist2.classList[0]==null) {
+                selectionlist2.classList.add("showlist");
+            }else{
+                selectionlist2.classList.remove("showlist");
+            }
+            
+        })
+        for (var i = 0; i < selectionlist2.children.length; i++) {
+             selectionlist2.children[i].addEventListener("click",(event)=>{  
+                selectedbox2.classList.remove(selectedbox2.classList[0]);
+                selectedbox2.classList.add(event.target.classList[0]);
+                //console.log(event.target);
+            })
+        }
+        
+        
+        let selectionblock = document.getElementById("blosel");
+        let selectedblockbox = document.getElementById("blo");
+        let opcount = document.getElementsByClassName("opcount");
+        opcount[0].addEventListener("click",()=>{ 
+            selectionlist1.classList.remove("showlist");
+            selectionlist2.classList.remove("showlist");
+            if(selectionblock.classList[0]==null) {
+                selectionblock.classList.add("showlist");
+            }else{
+                selectionblock.classList.remove("showlist");
+            }
+            
+        })
+        for (var i = 0; i < selectionblock.children.length; i++) {
+             selectionblock.children[i].addEventListener("click",(event)=>{  
+
+                selectedblockbox.innerText=event.target.innerText;
+                //console.log(event.target);
+            })
+        }
+        
+        
+    </script>
+</body>
+
+</html>
+
+       
+       
