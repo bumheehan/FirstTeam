@@ -1,0 +1,176 @@
+  @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+  body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Press Start 2P', cursive;
+  }
+
+  header {
+      width: 100%;
+      height: 100px;
+      background: #414141;
+      position: absolute;
+
+  }
+
+  .contents-area {
+      position: absolute;
+      top: 100px;
+      width: 100%;
+      height: 768px;
+      background: #999;
+      margin: 0 auto;
+  }
+
+  footer {
+      position: absolute;
+      top: 868px;
+      width: 100%;
+      height: 100px;
+      background: #222;
+  }
+
+  .aside-area {
+      width: 15%;
+      height: 100%;
+      background: #bbb;
+      float: left
+  }
+
+  .section-area {
+
+      width: 70%;
+      height: 100%;
+      background: #ddd;
+      float: left;
+  }
+
+  .aside-area-2 {
+      width: 15%;
+      height: 100%;
+      float: left;
+      background: #fff;
+  }
+
+  article:nth-child(1) {
+      background: #222;
+      float: left;
+      width: 60%;
+      height: 400px;
+  }
+
+  article:nth-child(2) {
+      background: #939393;
+      float: left;
+      width: 40%;
+      height: 400px;
+  }
+
+  article:nth-child(3) {
+      float: left;
+      width: 20%;
+      height: 368px;
+      background: red;
+  }
+
+  article:nth-child(4) {
+      float: left;
+      width: 20%;
+      height: 368px;
+      background: purple;
+  }
+
+  article:nth-child(5) {
+      float: left;
+      width: 20%;
+      height: 368px;
+      background: yellow;
+  }
+
+  article:nth-child(6) {
+      float: left;
+      width: 20%;
+      height: 368px;
+      background: blue;
+  }
+
+  article:nth-child(7) {
+      float: left;
+      width: 20%;
+      height: 368px;
+      background: green;
+  }
+
+  nav {
+      display: flex;
+      justify-content: center;
+  }
+
+  ul {
+      list-style: none;
+  }
+
+  li {
+      display: inline-block;
+      margin: 0px 50px;
+
+  }
+
+  a {
+      text-decoration: none;
+      color: antiquewhite;
+  }
+
+  img {
+      width: 40px;
+  }
+article{
+    position: relative;
+    overflow: hidden;
+}
+  article video {
+      position: absolute;
+      top: 0;
+      width: auto;
+      height: 100%;
+      opacity: 0;
+      z-index: 1;
+  }
+article h3{
+    position: absolute;
+    bottom: 210px;
+    right: -310px;
+    color: #fff;
+    text-align: right;
+    opacity: 1;
+    z-index: 4;
+}
+article p{
+    position: absolute;
+    bottom: 50px;
+    right: -310px;
+    width: 100px;
+    height: 150px;
+    font: 12px/1.5 arial;
+    color: #fff;
+    text-align: right;
+    opacity: 0.8;
+    z-index: 5;
+}
+article:hover h2{
+    color: black;
+    border-left: 3px solid #ccc;
+}
+article:hoverdiv{
+    top: 270px;
+    height: 70px;
+}
+.footer-icon{
+    margin: 25px 10px;
+}
+.footer-logo{
+    float: right;
+    color: aliceblue;
+    margin: 25px 10px;
+}

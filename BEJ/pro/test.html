@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> ex2_step4 </title>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script type="text/javascript" src="js/prefixfree.min.js"></script>
+
+    <link rel="stylesheet" href="css/test1.css">
+    <script>
+$(document).ready(function(){
+
+	// 마우스 오버시
+	$("article").on("mouseover",function(){
+
+		// 변수 vid에 video파일 참조
+		var vid = $(this).find("video").get(0);
+		// 동영상의 재생위치를 처음(0)으로 설정
+		vid.currentTime=0;
+		// 동영상을 재생
+		vid.play();
+
+		$(this).stop().animate({"width":"35%"},1000,function(){
+			//article이 넓어진 바로 후에 아래 구문이 실행됩니다.
+			$(this).find("h3").stop().animate({"right":"20px"},400);
+			$(this).find("p").stop().animate({"right":"20px"},800);
+		});
+		$(this).find("video").stop().animate({"opacity":"0.9"},1200);
+	});
+
+	// 마우스 아웃시
+	$("article").on("mouseout",function(){
+
+		// 변수 vid에 video파일 참조
+		var vid = $(this).find("video").get(0);
+		// 동영상을 정지
+		vid.pause();
+
+		$(this).stop().animate({"width":"20%"},700);
+		$(this).find("video").stop().animate({"opacity":"0"},2000);
+		$(this).find("h3").stop().animate({"right":"-110px"},200);
+		$(this).find("p").stop().animate({"right":"-110px"},500);
+	});
+
+});
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <!-- 상단 header-->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">game</a></li>
+                <li><a href="#">download</a></li>
+                <li><img src="/res/logo2.png" alt=""></li>
+                <li><a href="#">download</a></li>
+                <li><a href="#">download</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <!-- 중간 contents-->
+    <div class="contents-area">
+        <div class="aside-area">
+
+        </div>
+        <div class="section-area">
+            <article></article>
+            <article></article>
+
+            <article>
+                <h2>Apple</h2>
+                <video loop="loop" preload="auto">
+                    <source src="img/vid1.mp4" type="video/mp4"/>
+                </video>
+                <div></div>
+                <h3>Apple</h3>
+                <p>Nulla ex risus</p>
+            </article>
+            <article>
+                <h2>Banana</h2>
+                <video loop="loop" preload="auto">
+                    <source src="img/vid2.mp4" type="video/mp4"/>
+                </video>
+                 <div></div>
+                <h3>Banan</h3>
+                <p>Nulla ex risus</p>
+            </article>
+            <article>
+                <h2>Citrus</h2>
+                <video loop="loop" preload="auto">
+                    <source src="img/vid3.mp4" type="video/mp4"/>
+                </video>
+                 <div></div>
+                <h3>Citrus</h3>
+                <p>Nulla ex risus</p>
+            </article>
+            <article>
+                <h2>Dumpli</h2>
+                <video loop="loop" preload="auto">
+                    <source src="img/vid4.mp4" type="video/mp4"/>
+                </video>
+                 <div></div>
+                <h3>Dumplings</h3>
+                <p>Nulla ex risus</p>
+            </article>
+
+
+        </div>
+        <div class="aside-area-2">
+
+        </div>
+    </div>
+    <!-- 하단 footer-->
+    <footer>
+        <ul>
+            <li class="footer-icon"><a href="#"><i class="fab fa-google-play"></i></a></li>
+            <li class="footer-icon"><a href="#"><i class="fab fa-app-store"></i></a></li>
+            <li class="footer-icon"><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li class="footer-icon"><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li class="footer-icon"><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li class="footer-logo">ⓒ AppLab Corp.</li>
+        </ul>
+
+    </footer>
+</body>
+
+</html>
